@@ -20,7 +20,6 @@ steps:
 - checkout: self
   clean: true
   persistCredentials: true
-  path: $(repoPath)
 
 - script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
