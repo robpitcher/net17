@@ -9,3 +9,5 @@ $currentRevision ++
 $newRevision = $currentRevision
 
 $output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Path .\outputs\output1.txt
+
+# tes t1
