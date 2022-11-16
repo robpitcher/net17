@@ -4,7 +4,7 @@ trigger:
     - main
   paths:
     include:
-    - outputs/output1.txt
+    - scripts/thing1.ps1
 
 variables:
   buildAgentPool: 'vb6buildhost'
