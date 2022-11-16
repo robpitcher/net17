@@ -8,7 +8,7 @@ trigger:
 
 variables:
   buildAgentPool: 'vb6buildhost'
-  sourcePath: 'C:\buildagent\_work\net17'
+  repoPath: 'C:\buildagent\_work\net17'
   scriptPath: 'scripts\thing1.ps1'
   
 pool:
@@ -30,11 +30,11 @@ steps:
   displayName: Run update revision info script
   inputs:
     targetType: filePath
-    filePath: $(sourcePath)\$(scriptPath)
+    filePath: $(repoPath)\$(scriptPath)
 
 - script: |
     git add -A
     git commit -m "update revision info [skip ci]"
     git push --set-upstream origin main
-  workingDirectory: $(sourcePath)
+  workingDirectory: $(repoPath)
   displayName: Commit revision info output
