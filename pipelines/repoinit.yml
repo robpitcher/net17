@@ -3,7 +3,7 @@ trigger:
 
 variables:
   buildAgentPool: 'vb6buildhost'
-  repoPath: 'C:\repos'
+  repoPath: 'C:\buildagent\_work'
 
 pool:
   name: $(buildAgentPool)

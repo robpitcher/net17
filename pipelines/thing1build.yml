@@ -8,7 +8,7 @@ trigger:
 
 variables:
   buildAgentPool: 'vb6buildhost'
-  sourcePath: 'C:\repos\net17'
+  sourcePath: 'C:\buildagent\_work\net17'
   scriptPath: 'scripts\thing1.ps1'
   
 pool:
