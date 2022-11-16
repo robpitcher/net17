@@ -1,0 +1,40 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - outputs/output1.txt
+
+variables:
+  buildAgentPool: 'vb6buildhost'
+  sourcePath: 'C:\repos\net17'
+  scriptPath: 'scripts\thing1.ps1'
+  
+pool:
+  name: $(buildAgentPool)
+
+steps:
+
+# - script:
+#    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+#   workingDirectory: $(System.DefaultWorkingDirectory)
+#   displayName: Set git config
+
+- script: |
+   git checkout -b main
+  workingDirectory: $(repoPath)
+  displayName: Checkout and pull repo
+
+- task: PowerShell@2
+  displayName: Run update revision info script
+  inputs:
+    targetType: filePath
+    filePath: $(sourcePath)\$(scriptPath)
+
+- script: |
+    git add -A
+    git commit -m "update revision info [skip ci]"
+    git push --set-upstream origin main
+  workingDirectory: $(sourcePath)
+  displayName: Commit revision info output

@@ -1,0 +1,34 @@
+trigger:
+  none
+
+variables:
+  buildAgentPool: 'vb6buildhost'
+  repoPath: 'C:\repos'
+
+pool:
+  name: $(buildAgentPool)
+
+steps:
+
+- task: PowerShell@2
+  displayName: Clean up any existing local repos
+  inputs:
+    targetType: inline
+    workingDirectory: $(repoPath)
+    script: |
+      Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
+
+- checkout: self
+  clean: true
+  persistCredentials: true
+  path: $(repoPath)
+
+- script:
+   git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+  workingDirectory: $(System.DefaultWorkingDirectory)
+  displayName: Set git config
+
+# - script: |
+#    git checkout -b main
+#   workingDirectory: $(System.DefaultWorkingDirectory)
+#   displayName: Checkout and pull repo
