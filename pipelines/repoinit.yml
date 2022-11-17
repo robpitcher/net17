@@ -21,8 +21,9 @@ steps:
   clean: true
   persistCredentials: true
 
-- script:
+- script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+   git config --list --show-origin --show-scope
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Set git config
 
