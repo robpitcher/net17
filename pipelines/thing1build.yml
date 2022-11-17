@@ -18,6 +18,9 @@ pool:
 
 steps:
 
+- checkout: none
+  persistCredentials: true
+
 - script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
   workingDirectory: $(repoPath)
