@@ -3,6 +3,8 @@ trigger:
 
 variables:
   buildAgentPool: 'vb6buildhost'
+  gitEmail: 'buildpipeline@robpitcher.com'
+  gitUserName: 'buildpipeline'
 
 pool:
   name: $(buildAgentPool)
@@ -23,7 +25,6 @@ steps:
 
 - script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   git config --list --show-origin --show-scope
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Set git config
 
