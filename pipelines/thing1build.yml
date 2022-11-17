@@ -28,10 +28,10 @@ steps:
 
 - task: PowerShell@2
   displayName: Run update revision info script
-  workingDirectory: $(repoPath)
   inputs:
     targetType: filePath
     filePath: $(repoPath)\$(scriptPath)
+    workingDirectory: $(repoPath)
 
 - script: |
     git add -A
