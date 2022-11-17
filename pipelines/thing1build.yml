@@ -23,6 +23,7 @@ steps:
 
 - script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+   git config --global --add url."https://github.com/".insteadOf "git@github.com:"
   workingDirectory: $(repoPath)
   displayName: Set git config
 
