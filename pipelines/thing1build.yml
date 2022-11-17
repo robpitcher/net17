@@ -18,12 +18,12 @@ pool:
 
 steps:
 
-- checkout: self
+- checkout: none
   persistCredentials: true
 
 - script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   # git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+   git config --global --add url."git@github.com:".insteadOf "https://github.com/"
   workingDirectory: $(repoPath)
   displayName: Set git config
 
