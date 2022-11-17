@@ -20,7 +20,7 @@ steps:
 
 - script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-  workingDirectory: $(System.DefaultWorkingDirectory)
+  workingDirectory: $(repoPath)
   displayName: Set git config
 
 - script: |
