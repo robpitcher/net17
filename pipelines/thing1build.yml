@@ -8,6 +8,8 @@ trigger:
 
 variables:
   buildAgentPool: 'vb6buildhost'
+  gitEmail: 'buildpipeline@robpitcher.com'
+  gitUserName: 'buildpipeline'
   repoPath: 'C:\agent\_work\1\s'
   scriptPath: 'scripts\thing1.ps1'
   
@@ -16,10 +18,10 @@ pool:
 
 steps:
 
-# - script:
-#    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-#   workingDirectory: $(System.DefaultWorkingDirectory)
-#   displayName: Set git config
+- script:
+   git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+  workingDirectory: $(System.DefaultWorkingDirectory)
+  displayName: Set git config
 
 - script: |
    git checkout main
