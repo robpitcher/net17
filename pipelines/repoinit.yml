@@ -24,6 +24,7 @@ steps:
   persistCredentials: true
 
 - script: |
+   git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Set git config
