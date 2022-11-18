@@ -28,6 +28,7 @@ steps:
 
 - script: |
    git checkout main
+   git pull origin main
   workingDirectory: $(repoPath)
   displayName: Checkout and pull repo
 
