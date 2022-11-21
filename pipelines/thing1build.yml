@@ -33,6 +33,13 @@ steps:
   workingDirectory: $(repoPath)
   displayName: Set git config
 
+- task: Bash@3
+  inputs:
+    targetType: inline
+    script: |
+      eval "$(ssh-agent -s)"
+      ssh-add ~/.ssh/id_ed25519
+
 - script: |
    git checkout main
    git pull origin main
