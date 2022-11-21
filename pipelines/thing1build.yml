@@ -28,17 +28,12 @@ steps:
     script:
       echo $env:USERPROFILE
 
-- script:
+- script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+   ssh-agent
+   ssh-add ~/.ssh/id_ed25519
   workingDirectory: $(repoPath)
   displayName: Set git config
-
-- task: Bash@3
-  inputs:
-    targetType: inline
-    script: |
-      eval "$(ssh-agent -s)"
-      ssh-add ~/.ssh/id_ed25519
 
 - script: |
    git checkout main
