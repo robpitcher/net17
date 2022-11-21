@@ -22,6 +22,11 @@ steps:
   persistCredentials: true
 
 - script:
+   echo %USERPROFILE%
+  workingDirectory: $(repoPath)
+  displayName: Echo user profile
+
+- script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
   workingDirectory: $(repoPath)
   displayName: Set git config
