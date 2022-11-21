@@ -19,9 +19,9 @@ steps:
 #     script: |
 #       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
 
-- checkout: self
-  clean: true
-  persistCredentials: true
+# - checkout: self
+#   clean: true
+#   persistCredentials: true
 
 ################  INIT REPO W/ SSH KEY ################ 
 # - script: |
