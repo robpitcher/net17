@@ -10,7 +10,7 @@ variables:
   buildAgentPool: 'vb6buildhost'
   gitEmail: 'buildpipeline@robpitcher.com'
   gitUserName: 'buildpipeline'
-  repoPath: 'C:\agent\_work\1\s'
+  repoPath: 'C:\agents\_work\1\s'
   scriptPath: 'scripts\thing1.ps1'
   
 pool:
