@@ -23,6 +23,7 @@ steps:
   clean: true
   persistCredentials: true
 
+################  INIT REPO W/ SSH KEY ################ 
 # - script: |
 #    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
 #    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
@@ -32,11 +33,12 @@ steps:
 #   workingDirectory: $(System.DefaultWorkingDirectory)
 #   displayName: Configure git & SSH key
 
+################ ATTEMPT INIT REPO WITH PAT ??? ################ 
 - script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
    git clone https://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@github.com/robpitcher/net17
   workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: Configure git & SSH key
+  displayName: Attempt using PAT
 
 - script: |
    git checkout -b main
