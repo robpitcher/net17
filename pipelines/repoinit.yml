@@ -30,7 +30,7 @@ steps:
    ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: Set git config
+  displayName: Configure git & SSH key
 
 - script: |
    git checkout -b main
