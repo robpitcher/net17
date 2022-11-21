@@ -28,12 +28,12 @@ steps:
     script:
       echo $env:USERPROFILE
 
-- script: |
-   git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   ssh-agent
-   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
-  workingDirectory: $(repoPath)
-  displayName: Set git config
+# - script: |
+#    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+#    ssh-agent
+#    ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
+#   workingDirectory: $(repoPath)
+#   displayName: Set git config
 
 - script: |
    git checkout main
