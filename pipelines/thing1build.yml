@@ -21,10 +21,12 @@ steps:
 - checkout: none
   persistCredentials: true
 
-- script:
-   echo %USERPROFILE%
-  workingDirectory: $(repoPath)
+- task: PowerShell@2
   displayName: Echo user profile
+  inputs:
+    targetType: inline
+    script:
+      echo $env:USERPROFILE
 
 - script:
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
