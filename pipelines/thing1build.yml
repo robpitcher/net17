@@ -34,7 +34,7 @@ steps:
   displayName: Set git config
 
 - script: |
-   git checkout -b main
+   git checkout main
    git pull origin main
   workingDirectory: $(repoPath)
   displayName: Checkout and pull repo
