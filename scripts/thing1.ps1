@@ -12,3 +12,4 @@ $output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Pa
 
 
 # test
+# Testing a change to the "source code"  *Uses Dr. Evil hand quotes*
