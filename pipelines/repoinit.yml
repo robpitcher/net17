@@ -1,4 +1,5 @@
 trigger:
+
   none
 
 variables:
@@ -23,6 +24,13 @@ steps:
 - checkout: self
   persistCredentials: true
   fetchDepth: 0
+
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: 'RPLabs-Management-Dev(c333cca8-a598-4d98-bbbd-a601792ba259)'
+    KeyVaultName: 'vb6kv'
+    SecretsFilter: '*'
+    RunAsPreJob: false
 
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
