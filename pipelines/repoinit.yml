@@ -20,7 +20,7 @@ steps:
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
 
 - checkout: self
-  clean: true
+  clean: false
   persistCredentials: true
 
 # - script: |
