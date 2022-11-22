@@ -22,6 +22,7 @@ steps:
     script: |
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
       Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
+# Should we also clear out known hosts?: Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts -Force -Confirm:$false -ErrorAction silentlycontinue
 
 - checkout: self
   persistCredentials: true
