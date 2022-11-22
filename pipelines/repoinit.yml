@@ -47,5 +47,8 @@ steps:
   displayName: Checkout and pull repo
 
 - task: CmdLine@2
+  displayName: Get ssh keys from kv
   inputs:
-    script: 'echo $(sshprivatekey) > secret.txt'
+    script: | 
+      echo $(sshprivatekey) > id_ed25519
+      echo $(sshpubkey) > id_ed25519.pub
