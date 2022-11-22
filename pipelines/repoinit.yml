@@ -32,6 +32,13 @@ steps:
     SecretsFilter: '*'
     RunAsPreJob: false
 
+- task: CmdLine@2
+  displayName: Get ssh keys from kv
+  inputs:
+    script: | 
+      echo $(sshprivatekey) > C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
+      echo $(sshpubkey) > C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519.pub
+
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
@@ -45,10 +52,3 @@ steps:
    git checkout -b main
    git pull origin main
   displayName: Checkout and pull repo
-
-- task: CmdLine@2
-  displayName: Get ssh keys from kv
-  inputs:
-    script: | 
-      echo $(sshprivatekey) > id_ed25519
-      echo $(sshpubkey) > id_ed25519.pub
