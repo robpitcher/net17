@@ -21,6 +21,7 @@ steps:
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
 
 - checkout: self
+  persistCredentials: true
   fetchDepth: 0
 
 # - script: |
