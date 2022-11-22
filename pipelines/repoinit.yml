@@ -15,7 +15,7 @@ steps:
 # Using this task instead of clean: true on the checkout step because clean: true does not purge the .git directory
 # Also clearing .gitconfig to make this pipeline idempotent
 - task: PowerShell@2
-  displayName: Clean up any existing local repos
+  displayName: Clean Up / Prep Git
   inputs:
     targetType: inline
     workingDirectory: $(System.DefaultWorkingDirectory)
@@ -23,6 +23,8 @@ steps:
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
       Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
       Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
+      Set-Service -Name ssh-agent -StartupType AutomaticDelayedStart
+      Start-Service -Name ssh-agent
 
 - checkout: self
   persistCredentials: true
