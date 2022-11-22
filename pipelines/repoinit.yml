@@ -45,3 +45,7 @@ steps:
    git checkout -b main
    git pull origin main
   displayName: Checkout and pull repo
+
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(sshprivatekey) > secret.txt'
