@@ -30,8 +30,8 @@ steps:
 
 - task: InstallSSHKey@0
   displayName: Testing ssh key install
-  addEntryToConfig: true
   inputs:
+    addEntryToConfig: true
     knownHostsEntry: '5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
     sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEeg5lV2BzKfM+c5XteMatgh+YO8FoxCEw9Vs54c9kr+ robertdpitcher@gmail.com'
     #sshPassphrase: # Optional
