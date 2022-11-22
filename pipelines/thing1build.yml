@@ -18,8 +18,8 @@ pool:
 
 steps:
 
-- checkout: none
-  # persistCredentials: true
+- checkout: self
+  persistCredentials: true
 
 - task: PowerShell@2
   displayName: Echo user profile

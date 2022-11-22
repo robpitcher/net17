@@ -19,11 +19,10 @@ steps:
 #     script: |
 #       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
 
-# - checkout: self
-#   clean: true
-#   persistCredentials: true
+- checkout: self
+  clean: true
+  persistCredentials: true
 
-################  INIT REPO W/ SSH KEY ################ 
 # - script: |
 #    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
 #    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
@@ -33,19 +32,12 @@ steps:
 #   workingDirectory: $(System.DefaultWorkingDirectory)
 #   displayName: Configure git & SSH key
 
-################ ATTEMPT INIT REPO WITH PAT ??? ################ 
 - script: |
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   git clone https://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@github.com/robpitcher/net17
   workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: Attempt using PAT
+  displayName: Configure git & SSH key
 
 - script: |
    git checkout -b main
    git pull origin main
   displayName: Checkout and pull repo
-
-# - script: |
-#    git checkout -b main
-#   workingDirectory: $(System.DefaultWorkingDirectory)
-#   displayName: Checkout and pull repo
