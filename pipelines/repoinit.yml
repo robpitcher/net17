@@ -33,10 +33,10 @@ steps:
   inputs:
     # addEntryToConfig: true
     # configHostAlias: 'vm02-ssh'
-    knownHostsEntry: 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl'
-    sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEeg5lV2BzKfM+c5XteMatgh+YO8FoxCEw9Vs54c9kr+ robertdpitcher@gmail.com'
+    knownHostsEntry: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+    sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCu47ME47LGsW4L+fUoOdClGXjR0VS9mjE+V+kJM4PvHBF6tv7TUhFvgR7xoIQwPj8OD+iIuRsyMXNyclm6oEb3jU8MO0hp3QShPqzPIMZO59tJ1TDaP0tsSJoY4N/ERXz1EVqc7uUHD8tPSY+d9SGBwc+gVGO93uNXWUsTXQok6jJ2WSIMiQCLfEKE8veXTbNnEhafdfH6IWeP9RsW8hMpMC0ZhXfCKOgbGfIvYCVlso9+g2huvA7SoPGZ0lfHAiDQkk/Ca97iQ+CknZv8wEtS1s0esT9c+GpTSr3o1+pImwQjS1dHoksyF4rTsGZ8nHkN9txw39zp4r03e4wpI7JiTltuVFqEfXo8iLLhsbn3XLGQpTHDeOiVUioZ6MFK5Alamzd9HfDeCSnK/q8i5pnjEsliwl2JeKx7ALhIFMg/li8OwFvfXy8RWa0lWU1vNHhBrHnF68g2S/KycP82tI9r9+eqUZGTQw1sFQgvP5VX6HHWeTZAH2hHFkbn9es2nKs= rob@vm02'
     #sshPassphrase: # Optional
-    sshKeySecureFile: id_ed25519
+    sshKeySecureFile: id_rsa
 
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
