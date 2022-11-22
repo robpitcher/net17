@@ -13,6 +13,7 @@ pool:
 steps:
 
 # Using this task instead of clean: true on the checkout step because clean: true does not purge the .git directory
+# Also clearing .gitconfig to make this pipeline idempotent
 - task: PowerShell@2
   displayName: Clean up any existing local repos
   inputs:
@@ -20,6 +21,7 @@ steps:
     workingDirectory: $(System.DefaultWorkingDirectory)
     script: |
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
+      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false
 
 - checkout: self
   persistCredentials: true
