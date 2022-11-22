@@ -27,20 +27,6 @@ steps:
   persistCredentials: true
   fetchDepth: 0
 
-- task: AzureKeyVault@2
-  inputs:
-    azureSubscription: 'RPLabs-Management-Dev(c333cca8-a598-4d98-bbbd-a601792ba259)'
-    KeyVaultName: 'vb6kv'
-    SecretsFilter: '*'
-    RunAsPreJob: false
-
-- task: CmdLine@2
-  displayName: Get ssh keys from kv
-  inputs:
-    script: | 
-      echo $(sshprivatekey) > C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
-      echo $(sshpubkey) > C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519.pub
-
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
