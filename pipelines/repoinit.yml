@@ -20,8 +20,8 @@ steps:
     targetType: inline
     workingDirectory: $(System.DefaultWorkingDirectory)
     script: |
-      Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
-      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false
+      Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorActionPreference silentlycontinue
+      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorActionPreference silentlycontinue
 
 - checkout: self
   persistCredentials: true
