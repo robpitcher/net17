@@ -28,14 +28,29 @@ steps:
   persistCredentials: true
   fetchDepth: 0
 
+- task: InstallSSHKey@0
+  displayName: Testing ssh key install
+  addEntryToConfig: true
+  inputs:
+    knownHostsEntry: '5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+    sshPublicKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEeg5lV2BzKfM+c5XteMatgh+YO8FoxCEw9Vs54c9kr+ robertdpitcher@gmail.com'
+    #sshPassphrase: # Optional
+    sshKeySecureFile: id_ed25519
+
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   ssh-agent
-   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
-   ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
   workingDirectory: $(System.DefaultWorkingDirectory)
-  displayName: Configure git & SSH key
+  displayName: Configure git
+
+# - script: |
+#    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+#    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+#    ssh-agent
+#    ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
+#    ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
+#   workingDirectory: $(System.DefaultWorkingDirectory)
+#   displayName: Configure git & SSH key
 
 - script: |
    git checkout -b main
