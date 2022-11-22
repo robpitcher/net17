@@ -11,6 +11,7 @@ pool:
 
 steps:
 
+# Using this task instead of clean: true on the checkout step because clean: true does not purge the .git directory
 - task: PowerShell@2
   displayName: Clean up any existing local repos
   inputs:
@@ -20,7 +21,7 @@ steps:
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force
 
 - checkout: self
-  persistCredentials: true
+  fetchDepth: 0
 
 # - script: |
 #    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
