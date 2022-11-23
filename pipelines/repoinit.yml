@@ -45,7 +45,7 @@ steps:
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
    ssh-agent
-   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_rsa
+   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
    ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Configure git & SSH key
