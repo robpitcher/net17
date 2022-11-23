@@ -30,14 +30,14 @@ steps:
 
 # Download a secure file to the agent machine
 - task: DownloadSecureFile@1
-  name: id_rsa # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+  name: id_ed25519 # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
   inputs:
-    secureFile: id_rsa
+    secureFile: id_ed25519
 
 - task: DownloadSecureFile@1
-  name: id_rsapub # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+  name: id_ed25519pub # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
   inputs:
-    secureFile: id_rsa.pub
+    secureFile: id_ed25519.pub
 
 - script: |
    robocopy %secureFilePath% "C:\Windows\ServiceProfiles\NetworkService\.ssh" id_rsa id_rsa.pub /IS
