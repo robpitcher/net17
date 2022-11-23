@@ -14,15 +14,15 @@ steps:
 
 # Using this task instead of clean:true on the checkout step because clean:true does not purge the .git directory
 # Also clearing .gitconfig just in case
-- task: PowerShell@2
-  displayName: Clean Up / Prep Git
-  inputs:
-    targetType: inline
-    workingDirectory: $(System.DefaultWorkingDirectory)
-    script: |
-      Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
-      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
-      Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
+# - task: PowerShell@2
+#   displayName: Clean Up / Prep Git
+#   inputs:
+#     targetType: inline
+#     workingDirectory: $(System.DefaultWorkingDirectory)
+#     script: |
+#       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
+#       Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
+#       Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
 
 - checkout: self
   persistCredentials: true
