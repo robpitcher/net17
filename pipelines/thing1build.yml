@@ -30,6 +30,13 @@ steps:
     #sshPassphrase: # Optional
     sshKeySecureFile: id_rsa
 
+- task: PowerShell@2
+  displayName: hol up
+  inputs:
+    targetType: inline
+    script: |
+      start-sleep -seconds 120
+
 - script: |
    git checkout main
    git pull origin main 
