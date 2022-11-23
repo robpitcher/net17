@@ -40,10 +40,8 @@ steps:
     secureFile: id_ed25519.pub
 
 - script: |
-   echo %id_ed25519.secureFilePath% using percent sign
-   echo $(id_ed25519.secureFilePath) using ADO style
-   echo $env:secureFilePath using pshell env var
-   robocopy %secureFilePath% "C:\Windows\ServiceProfiles\NetworkService\.ssh" /IS
+   copy $(id_ed25519.secureFilePath) "C:\Windows\ServiceProfiles\NetworkService\.ssh" /Y
+   copy $(id_ed25519pub.secureFilePath) "C:\Windows\ServiceProfiles\NetworkService\.ssh" /Y
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
    ssh-agent
