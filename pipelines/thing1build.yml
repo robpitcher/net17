@@ -22,9 +22,9 @@ steps:
 
 - script: |
    git checkout main
-   git pull origin main
   workingDirectory: $(repoPath)
   displayName: Checkout and pull repo
+  # git pull origin main Took this out
 
 - task: PowerShell@2
   displayName: Run update revision info script
