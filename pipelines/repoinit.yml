@@ -30,12 +30,12 @@ steps:
 
 # Download a secure file to the agent machine
 - task: DownloadSecureFile@1
-  name: id_ed25519 # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+  name: id_ed25519
   inputs:
     secureFile: id_ed25519
 
 - task: DownloadSecureFile@1
-  name: id_ed25519pub # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+  name: id_ed25519pub
   inputs:
     secureFile: id_ed25519.pub
 
@@ -44,7 +44,6 @@ steps:
    copy $(id_ed25519pub.secureFilePath) "C:\Windows\ServiceProfiles\NetworkService\.ssh" /Y
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-   sc config ssh-agent start=delayed-auto
    ssh-agent
    ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
    ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
