@@ -40,8 +40,8 @@ steps:
     secureFile: id_ed25519.pub
 
 - script: |
-   echo %secureFilePath% using percent sign
-   echo $(secureFilePath) using ADO style
+   echo %id_ed25519.secureFilePath% using percent sign
+   echo $(id_ed25519.secureFilePath) using ADO style
    echo $env:secureFilePath using pshell env var
    robocopy %secureFilePath% "C:\Windows\ServiceProfiles\NetworkService\.ssh" /IS
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
