@@ -14,29 +14,19 @@ steps:
 
 # Using this task instead of clean:true on the checkout step because clean:true does not purge the .git directory
 # Also clearing .gitconfig just in case
-# - task: PowerShell@2
-#   displayName: Clean Up / Prep Git
-#   inputs:
-#     targetType: inline
-#     workingDirectory: $(System.DefaultWorkingDirectory)
-#     script: |
-#       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
-#       Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
-#       Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
+- task: PowerShell@2
+  displayName: Clean Up / Prep Git
+  inputs:
+    targetType: inline
+    workingDirectory: $(System.DefaultWorkingDirectory)
+    script: |
+      Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
+      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
+      Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
 
 - checkout: self
   persistCredentials: true
   fetchDepth: 0
-
-- task: InstallSSHKey@0
-  displayName: Testing ssh key install
-  inputs:
-    # addEntryToConfig: true
-    # configHostAlias: 'vm02-ssh'
-    knownHostsEntry: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
-    sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCOTsnMrWbot00RsVV1QyH/C7TaoC8pcj/OO2X0xuBZ37FFbJ+PL5FCUM42LWuXwFyDp9UEigTwuZvKkexSakCJrI0D0+w7UDPwPdOfzlj/9EwPDAsj5Iw/iB2wlor0QmKm5pRsYVk9y4HOVBmChaMy62WrGAJaKHtnV9j5TjtHDD1XQUdsoFP7YlwrwDxdrvpmroQ1JLAtTwJYQeyU/eigt5JKd4ALTA5wuWkFQleJkX041mjYNIIwwRthvm9jyPHUL3BCOZRCActbFECRrG4gMfgDrQ16KdWdnpf/A1fTgyhFuGUMO82YUJUBCyrhizijCtQSZfBgSrCCVVqgMcCe+OWAzeWpsGvpslGpSoA9AbtSC4TCp/Wft4mXGdqG1y7t9YHfmhvx0Ho0mUiL3QEKgGEazZwL1RvxBnyjW8BTy0zMdA/LxDPYDBKxih/DOfEJiS5iMOYx0Rmzc337DCbdadSfRWwUwaIetdXTsaVHQgQMB95m5TUOu/htz3nAUc= rob@vm03'
-    #sshPassphrase: # Optional
-    sshKeySecureFile: id_rsa
 
 - script: |
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
@@ -44,14 +34,14 @@ steps:
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Configure git
 
-# - script: |
-#    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-#    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
-#    ssh-agent
-#    ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
-#    ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
-#   workingDirectory: $(System.DefaultWorkingDirectory)
-#   displayName: Configure git & SSH key
+- script: |
+   git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+   git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
+   ssh-agent
+   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
+   ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
+  workingDirectory: $(System.DefaultWorkingDirectory)
+  displayName: Configure git & SSH key
 
 - script: |
    git checkout -b main
