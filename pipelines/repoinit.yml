@@ -31,16 +31,17 @@ steps:
   persistCredentials: true
   fetchDepth: 0
 
-# Download a secure file to the agent machine
+# Download the private key to the buildhost from secure file library
 - task: DownloadSecureFile@1
-  name: id_ed25519
+  name: $(pvtKey)
   inputs:
-    secureFile: id_ed25519
+    secureFile: $(pvtKey)
 
+# Download the public key to the buildhost from secure file library
 - task: DownloadSecureFile@1
-  name: id_ed25519pub
+  name: $(pubKey)
   inputs:
-    secureFile: id_ed25519.pub
+    secureFile: $(pubKey)
 
 - script: |
    copy $(id_ed25519.secureFilePath) "%buildUserProfile%\.ssh" /Y
