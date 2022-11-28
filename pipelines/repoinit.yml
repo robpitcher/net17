@@ -49,6 +49,6 @@ steps:
   displayName: Configure git & SSH key
 
 - script: |
-   git checkout -b main
-   git pull origin main
+   git checkout -b $(Build.SourceBranchName)
+   git pull origin $(Build.SourceBranchName)
   displayName: Checkout and pull repo
