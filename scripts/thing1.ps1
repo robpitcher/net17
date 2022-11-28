@@ -16,3 +16,4 @@ $output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Pa
 # testing history 2 change
 # testing history 3 change
 # testing history 4 change
+# test 5
