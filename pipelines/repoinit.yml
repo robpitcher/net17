@@ -7,8 +7,10 @@ variables:
   gitEmail: 'buildpipeline@robpitcher.com'
   gitUserName: 'buildpipeline'
   buildUserProfile: 'C:\Windows\ServiceProfiles\NetworkService'
-  pvtKey: 'id_ed25519'
-  pubKey: 'id_ed25519.pub'
+  pvtKeyFile: 'id_ed25519'
+  pvtKeyName: 'id_ed25519'
+  pubKeyFile: 'id_ed25519.pub'
+  pubKeyName: 'id_ed25519pub'
 
 pool:
   name: $(buildAgentPool)
@@ -33,15 +35,15 @@ steps:
 
 # Download the private key to the buildhost from secure file library
 - task: DownloadSecureFile@1
-  name: $(pvtKey)
+  name: $(pvtKeyName)
   inputs:
-    secureFile: $(pvtKey)
+    secureFile: $(pvtKeyFile)
 
 # Download the public key to the buildhost from secure file library
 - task: DownloadSecureFile@1
-  name: $(pubKey)
+  name: $(pubKeyName)
   inputs:
-    secureFile: $(pubKey)
+    secureFile: $(pubKeyFile)
 
 - script: |
    copy $(id_ed25519.secureFilePath) "%buildUserProfile%\.ssh" /Y
