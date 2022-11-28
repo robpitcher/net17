@@ -18,3 +18,4 @@ $output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Pa
 # testing history 4 change
 # test 5
 # Testing a dev branch???
+# now i should be testing dev branch
