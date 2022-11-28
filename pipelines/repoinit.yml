@@ -49,7 +49,7 @@ steps:
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
    ssh-agent
-   ssh-add "%buildUserProfile%\.ssh\id_ed25519"
+   ssh-add "%buildUserProfile%\.ssh\%pvtKeyFile%"
    ssh-keyscan -t rsa github.com >> "%buildUserProfile%\.ssh\known_hosts"
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Configure git & SSH key
