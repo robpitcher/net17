@@ -12,3 +12,4 @@ $output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Pa
 
 
 # Added a feature
+# testing history 1 change
