@@ -3,12 +3,7 @@ trigger:
   none
 
 variables:
-  buildAgentPool: 'vb6buildhost'
-  gitEmail: 'buildpipeline@robpitcher.com'
-  gitUserName: 'buildpipeline'
-  buildUserProfile: 'C:\Windows\ServiceProfiles\NetworkService'
-  pvtKeyFile: 'id_ed25519'
-  pubKeyFile: 'id_ed25519.pub'
+- group: vg-repoInit
 
 pool:
   name: $(buildAgentPool)
