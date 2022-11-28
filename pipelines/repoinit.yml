@@ -6,6 +6,9 @@ variables:
   buildAgentPool: 'vb6buildhost'
   gitEmail: 'buildpipeline@robpitcher.com'
   gitUserName: 'buildpipeline'
+  buildUserProfile: 'C:\Windows\ServiceProfiles\NetworkService'
+  pvtKey: 'id_ed25519'
+  pubKey: 'id_ed25519.pub'
 
 pool:
   name: $(buildAgentPool)
@@ -21,8 +24,8 @@ steps:
     workingDirectory: $(System.DefaultWorkingDirectory)
     script: |
       Get-ChildItem -Force | Remove-Item -Recurse -Confirm:$false -Force -ErrorAction silentlycontinue
-      Remove-Item -Path "C:\Windows\ServiceProfiles\NetworkService\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
-      Remove-Item -Path C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts* -Force -Confirm:$false -ErrorAction silentlycontinue
+      Remove-Item -Path "${env:buildUserProfile}\.gitconfig" -Force -Confirm:$false -ErrorAction silentlycontinue
+      Remove-Item -Path "${env:buildUserProfile}\.ssh\known_hosts*" -Force -Confirm:$false -ErrorAction silentlycontinue
 
 - checkout: self
   persistCredentials: true
@@ -40,13 +43,13 @@ steps:
     secureFile: id_ed25519.pub
 
 - script: |
-   copy $(id_ed25519.secureFilePath) "C:\Windows\ServiceProfiles\NetworkService\.ssh" /Y
-   copy $(id_ed25519pub.secureFilePath) "C:\Windows\ServiceProfiles\NetworkService\.ssh" /Y
+   copy $(id_ed25519.secureFilePath) "%buildUserProfile%\.ssh" /Y
+   copy $(id_ed25519pub.secureFilePath) "%buildUserProfile%\.ssh" /Y
    git config --global --add url."git@github.com:".insteadOf "https://github.com/"
    git config --global user.email $(gitEmail) & git config --global user.name $(gitUserName)
    ssh-agent
-   ssh-add C:\Windows\ServiceProfiles\NetworkService\.ssh\id_ed25519
-   ssh-keyscan -t rsa github.com >> C:\Windows\ServiceProfiles\NetworkService\.ssh\known_hosts
+   ssh-add "%buildUserProfile%\.ssh\id_ed25519"
+   ssh-keyscan -t rsa github.com >> "%buildUserProfile%\.ssh\known_hosts"
   workingDirectory: $(System.DefaultWorkingDirectory)
   displayName: Configure git & SSH key
 
