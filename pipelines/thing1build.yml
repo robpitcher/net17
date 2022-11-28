@@ -21,8 +21,8 @@ steps:
 - checkout: none
 
 - script: |
-   git checkout main
-   git pull origin main 
+   git checkout $(Build.SourceBranchName)
+   git pull origin $(Build.SourceBranchName) 
   workingDirectory: $(repoPath)
   displayName: Checkout and pull repo
 
@@ -36,6 +36,6 @@ steps:
 - script: |
     git add -A
     git commit -m "update revision info [skip ci]"
-    git push --set-upstream origin main
+    git push --set-upstream origin $(Build.SourceBranchName)
   workingDirectory: $(repoPath)
   displayName: Commit revision info output
