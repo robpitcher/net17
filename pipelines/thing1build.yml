@@ -20,7 +20,7 @@ pool:
 
 steps:
 
-- checkout: none
+# - checkout: none
 
 - script: |
    git checkout $(Build.SourceBranchName)
@@ -42,7 +42,7 @@ steps:
     filePath: $(repoPath)\$(scriptPath)
     azureSubscription: RPLabs-Management-Dev(c333cca8-a598-4d98-bbbd-a601792ba259)
     azurePowerShellVersion: LatestVersion
-    ScriptArguments: verbose
+    ScriptArguments: -verbose
 
 - script: |
     git add -A
