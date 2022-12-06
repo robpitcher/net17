@@ -28,12 +28,20 @@ steps:
   workingDirectory: $(repoPath)
   displayName: Checkout and pull repo
 
-- task: PowerShell@2
-  displayName: Run update revision info script
+# - task: PowerShell@2
+#   displayName: Run update revision info script
+#   inputs:
+#     targetType: filePath
+#     filePath: $(repoPath)\$(scriptPath)
+#     workingDirectory: $(repoPath)
+
+- task: AzurePowerShell@5
+  displayName: Update revision info based off table storage
   inputs:
     targetType: filePath
     filePath: $(repoPath)\$(scriptPath)
     workingDirectory: $(repoPath)
+    azureSubscription: RPLabs-Management-Dev(c333cca8-a598-4d98-bbbd-a601792ba259)
 
 - script: |
     git add -A
