@@ -11,7 +11,7 @@ $partitionKey1 = "partition1"
 
 $tableRow = Get-AzTableRow -Table $cloudTable -PartitionKey $partitionKey1 -RowKey ${env:rowKey}
 
-$output1 = get-content -Path .\outputs\output1.txt
+$output1 = get-content -Path ${env:repoPath}\outputs\output1.txt
 
 $currentRevision = ($output1 | Select-String "RevisionVer=\d*").ToString().Split('=')[1]
 
