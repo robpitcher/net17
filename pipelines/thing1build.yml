@@ -12,7 +12,7 @@ variables:
   gitEmail: 'buildpipeline@robpitcher.com'
   gitUserName: 'buildpipeline'
   repoPath: 'C:\agents\_work\1\s'
-  scriptPath: 'scripts\thing1.ps1'
+  scriptPath: 'pipelines\fileVersioningUpdate.ps1'
   
 pool:
   name: $(buildAgentPool)
