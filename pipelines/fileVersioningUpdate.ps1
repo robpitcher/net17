@@ -1,5 +1,3 @@
-Connect-AzAccount -Identity
-
 # Load table details in memory
 $stgAccount = Get-AzStorageAccount -ResourceGroupName storagerg -Name ropistg
 $stgCtx = $stgaccount.Context
