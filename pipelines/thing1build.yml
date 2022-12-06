@@ -40,7 +40,6 @@ steps:
   inputs:
     targetType: filePath
     filePath: $(repoPath)\$(scriptPath)
-    workingDirectory: $(repoPath)
     azureSubscription: RPLabs-Management-Dev(c333cca8-a598-4d98-bbbd-a601792ba259)
     azurePowerShellVersion: LatestVersion
 
