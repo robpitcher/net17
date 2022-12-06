@@ -21,4 +21,6 @@ $currentRevision ++
 
 $newRevision = $currentRevision
 
-$output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Path .\outputs\output1.txt
+Write-Host "currently in $pwd"
+
+$output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Path ${env:repoPath}\outputs\output1.txt
