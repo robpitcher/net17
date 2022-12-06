@@ -13,6 +13,7 @@ variables:
   gitUserName: 'buildpipeline'
   repoPath: 'C:\agents\_work\1\s'
   scriptPath: 'pipelines\fileVersioningUpdate.ps1'
+  rowKey: 'thing1'
   
 pool:
   name: $(buildAgentPool)

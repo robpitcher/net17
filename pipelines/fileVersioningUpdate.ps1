@@ -7,4 +7,16 @@ $cloudTable = $stgTable.CloudTable
 # Create the rows
 $partitionKey1 = "partition1"
 
-Get-AzTableRow -Table $cloudTable -PartitionKey $partitionKey1 -RowKey ${env:rowKey}
+$tableRow = Get-AzTableRow -Table $cloudTable -PartitionKey $partitionKey1 -RowKey ${env:rowKey}
+
+$output1 = get-content -Path .\outputs\output1.txt
+
+$currentRevision = ($output1 | Select-String "RevisionVer=\d*").ToString().Split('=')[1]
+
+$currentRevision = ($tableRow.version.Split('.')[-1] / 1)
+
+$currentRevision ++
+
+$newRevision = $currentRevision
+
+$output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Path .\outputs\output1.txt
