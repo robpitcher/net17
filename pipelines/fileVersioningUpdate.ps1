@@ -4,7 +4,7 @@ $stgCtx = $stgaccount.Context
 $stgTable = Get-AzStorageTable -name versions -Context $stgCtx
 $cloudTable = $stgTable.CloudTable
 
-# Create the rows
+# Get the rows
 $partitionKey1 = "partition1"
 
 $tableRow = Get-AzTableRow -Table $cloudTable -PartitionKey $partitionKey1 -RowKey ${env:rowKey}
@@ -13,12 +13,17 @@ $output1 = get-content -Path ${env:repoPath}\outputs\output1.txt
 
 $currentRevision = ($output1 | Select-String "RevisionVer=\d*").ToString().Split('=')[1]
 
-$currentRevision = ($tableRow.version.Split('.')[-1] / 1)
+$versionInfo = $tableRow.version
+$currentRevision = ($versionInfo.Split('.')[-1] / 1)
 
 $currentRevision ++
 
-$newRevision = $currentRevision
+# Set incremented revision
+$output1 -replace "RevisionVer=\d*","RevisionVer=$currentRevision" | Set-Content -Path ${env:repoPath}\outputs\output1.txt
 
-Write-Host "currently in $pwd"
+# Create updated version number
+$newVersion = $versionInfo.Split('.')[0] + "." + $versionInfo.Split('.')[1] + "." + $currentRevision
 
-$output1 -replace "RevisionVer=\d*","RevisionVer=$newRevision" | Set-Content -Path ${env:repoPath}\outputs\output1.txt
+$tableRow.version = $newVersion
+
+$tableRow | Update-AzTableRow -Table $cloudTable
